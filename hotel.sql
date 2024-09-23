@@ -70,7 +70,7 @@ CREATE TABLE IF NOT EXISTS `employee` (
 --
 
 INSERT INTO `employee` (`Employee_Id`, `Employee_Name`, `password`, `Employee_email`) VALUES
-('NG2024', 'Nitin Gupta', 'Nit@1234', 'nitingupta1906@gmail.com');
+('SadharanLadka', 'Debdut Bhatta', 'dav123dav123', 'xyz@gmail.com');
 
 -- --------------------------------------------------------
 

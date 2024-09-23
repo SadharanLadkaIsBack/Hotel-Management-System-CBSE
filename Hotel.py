@@ -3,7 +3,7 @@ import time
 from tkinter import *
 from tkinter import ttk,messagebox
 from tkinter.ttk import Treeview
-import pymysql
+import mysql.connector as mc
 import traceback
 
 Grand_total = 0
@@ -86,7 +86,7 @@ roomNo.focus()
 roomNo.delete(0,END)
 
 def connecttodataBase():
-    con=pymysql.connect(host="localhost",user='root',password='')
+    con=mc.connect(host="localhost",user='root',password='dav123')
     mycursor=con.cursor()
     query="use Hotel;"
     mycursor.execute(query)
@@ -345,7 +345,7 @@ starttab.heading('Price',text="PRICE")
 
 starttab.pack(fill='both')
 
-con = pymysql.connect(host="localhost",user='root',password='')
+con = mc.connect(host="localhost",user='root',password='dav123')
 mycursor = con.cursor()
 query = "use Hotel;"
 mycursor.execute(query)
@@ -802,7 +802,7 @@ BillArea.insert(END,'\n  ____________________________________________________ \n
 def Generate_billFun():
     global order,bill_no,user,Grand_total
     try:
-        con=pymysql.connect(host='localhost',user='root',password='')
+        con=mc.connect(host='localhost',user='root',password='dav123')
         mycursor=con.cursor()
         mycursor.execute('use hotel')
         mycursor.execute('INSERT INTO customer_order(Order_Id,room_no,Total_amt,Employee_Id) values(%s,%s ,%s ,%s)',(bill_no,roomNoForOrder.get(),Grand_total,user))
@@ -901,7 +901,7 @@ def loginbtnfunc():
         messagebox.showerror("Notification","Password Must be of 8 Characters!!!",parent=root)
     else:
         try:
-            con=pymysql.connect(host='localhost',user='root',password='')
+            con=mc.connect(host='localhost',user='root',password='dav123')
             mycursor=con.cursor()
             query='use hotel;'
             mycursor.execute(query)
@@ -1033,7 +1033,7 @@ avlbTable.heading('Available',text="Availablility")
 
 avlbTable.pack(fill='both')
 
-con = pymysql.connect(host="localhost",user='root',password='')
+con = mc.connect(host="localhost",user='root',password='dav123')
 mycursor = con.cursor()
 query = "use Hotel;"
 mycursor.execute(query)
