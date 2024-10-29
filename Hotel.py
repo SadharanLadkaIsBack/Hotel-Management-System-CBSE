@@ -901,15 +901,13 @@ def loginbtnfunc():
         messagebox.showerror("Notification","Password Must be of 8 Characters!!!",parent=root)
     else:
         try:
-            con=mc.connect(host='localhost',user='root',password='dav123')
+            con=mc.connect(host='localhost',user='root',password='dav123', database="hotel")
             mycursor=con.cursor()
-            query='use hotel;'
-            mycursor.execute(query)
-            query='select * from employee where Employee_Id =%s and password=%s;'
-            t=mycursor.execute(query,(user,passw))
-            if (t == True):
+            query=f'select * from employee where Employee_Id="{user}" and password="{passw}";'
+            t=mycursor.execute(query)
+            if (t == None):
                 HomeFrame.tkraise()
-                data=mycursor.execute("select Employee_Name from employee where Employee_Id=%s;",(user))
+                data=mycursor.execute(f"select Employee_Name from employee where Employee_Id={user};")
                 data=mycursor.fetchall()
                 for i in data:
                     Admin_name=i[0]
@@ -920,8 +918,8 @@ def loginbtnfunc():
                                      parent=root)
 
         except:
+            pass
             print(traceback.format_exc())
-            messagebox.showerror('Notification','Something is wrong!!!\nPlease try again...',parent=root)
             return
 
 #Login Submit Button
